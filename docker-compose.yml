@@ -1,0 +1,19 @@
+services:
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - edge_net
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+    volumes:
+      - ./dist/versions:/app/dist/versions
+      - ./dist/mapping.json:/app/dist/mapping.json
+
+
+networks:
+  edge_net:
+    driver: bridge
